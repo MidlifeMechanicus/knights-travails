@@ -7,4 +7,11 @@ require_relative "main/board_square"
 
 test_board = GameBoard.new
 
-p test_board
+test_board.generate_move_options
+
+puts test_board
+
+# for each square
+  # run through each square
+  # if coordinates = any of move coordinates
+    # push square into move options
