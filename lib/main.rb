@@ -1,17 +1,24 @@
-require_relative "main/game_board"
 require_relative "main/board_square"
 
-# Need a 7x7 board (graph)
-# each square has a location and links to 8 other squares (some of which may be nil)
-# Need function that chooses a vertex and then determins shortest distance to a second vertex
+def knight_moves (start, finish)
+  queue = []
+  current_square = BoardSquare.new(start)
 
-test_board = GameBoard.new
+  until current_square.coordinates == finish
+    current_square.next_squares.each do |square|
+      queue << BoardSquare.new(square, current_square)
+    end
+    current_square = queue.shift
 
-test_board.generate_move_options
+  end
 
-puts test_board
+  current_square.display_previous
 
-# for each square
-  # run through each square
-  # if coordinates = any of move coordinates
-    # push square into move options
+  current_square.reset
+
+end
+
+knight_moves([0,0],[3,3])
+knight_moves([3,3],[0,0])
+knight_moves([0,0],[7,7])
+knight_moves([3,3],[4,3])
